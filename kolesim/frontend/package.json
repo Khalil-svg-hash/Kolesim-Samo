@@ -1,0 +1,45 @@
+{
+  "name": "kolesim-frontend",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3",
+    "@radix-ui/react-checkbox": "^1",
+    "@radix-ui/react-dialog": "^1",
+    "@radix-ui/react-select": "^2",
+    "@radix-ui/react-tabs": "^1",
+    "@radix-ui/react-toast": "^1",
+    "@tanstack/react-query": "^5",
+    "@types/leaflet": "^1.9",
+    "axios": "^1.7",
+    "class-variance-authority": "^0.7",
+    "clsx": "^2",
+    "leaflet": "^1.9",
+    "lucide-react": "^0.400",
+    "next": "14.2.5",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-hook-form": "^7",
+    "react-leaflet": "^4",
+    "tailwind-merge": "^2",
+    "typescript": "^5",
+    "zod": "^3",
+    "zustand": "^4"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.5",
+    "postcss": "^8",
+    "tailwindcss": "^3"
+  }
+}
