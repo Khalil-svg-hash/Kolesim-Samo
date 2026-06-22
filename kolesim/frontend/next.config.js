@@ -1,9 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  experimental: {
-    typedRoutes: true
-  }
+  output: "standalone",
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "storage.yandexcloud.net",
+      },
+    ],
+  },
 };
 
 module.exports = nextConfig;

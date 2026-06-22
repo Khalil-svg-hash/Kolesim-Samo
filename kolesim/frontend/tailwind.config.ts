@@ -1,21 +1,24 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: ["./src/**/*.{ts,tsx}"],
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
   theme: {
     extend: {
       colors: {
         brand: {
-          primary: "#2563EB",
-          accent: "#16A34A"
-        }
+          primary: "#2563eb",
+          "primary-dark": "#1d4ed8",
+          accent: "#0ea5e9",
+        },
       },
       fontFamily: {
-        sans: ["'Manrope'", "ui-sans-serif", "system-ui", "sans-serif"]
-      }
-    }
+        sans: ["var(--font-manrope)", "system-ui", "sans-serif"],
+      },
+    },
   },
-  plugins: []
+  plugins: [],
 };
 
 export default config;
