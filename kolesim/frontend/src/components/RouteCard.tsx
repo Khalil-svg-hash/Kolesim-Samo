@@ -1,47 +1,75 @@
-"use client";
-
 import Link from "next/link";
 import type { Route } from "@/types/route";
-import { formatDistance, formatDuration, DIFFICULTY_LABELS } from "@/lib/utils";
 
 interface RouteCardProps {
   route: Route;
 }
 
-export default function RouteCard({ route }: RouteCardProps) {
+export function RouteCard({ route }: RouteCardProps) {
+  const difficultyLabels: Record<string, string> = {
+    easy: "Лёгкий",
+    medium: "Средний",
+    hard: "Сложный",
+  };
+
+  const difficultyColors: Record<string, string> = {
+    easy: "badge-success",
+    medium: "badge-warning",
+    hard: "badge-neutral",
+  };
+
+  const placesCount = route.places?.length ?? 0;
+
   return (
-    <Link href={`/routes/${route.slug}`} className="group">
-      <div className="card transition-shadow group-hover:shadow-md">
-        <div className="flex items-start justify-between">
-          <div>
-            <span className="inline-block rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-brand-primary">
-              {formatDuration(route.duration_days)}
-            </span>
-            <h3 className="mt-2 text-lg font-semibold text-slate-900">{route.title}</h3>
-          </div>
-          {route.is_free && (
-            <span className="rounded-full bg-green-50 px-2 py-1 text-xs text-green-700">
-              Бесплатно
-            </span>
+    <Link href={`/routes/${route.slug}`} className="card group flex flex-col">
+      {/* Header bar */}
+      <div className="h-2 bg-primary rounded-t-xl" />
+
+      {/* Content */}
+      <div className="flex-1 p-5 flex flex-col gap-4">
+        <div>
+          <h3 className="text-h4 text-text group-hover:text-primary transition-colors line-clamp-2">
+            {route.title}
+          </h3>
+          {route.description && (
+            <p className="text-body-sm text-text-secondary mt-1.5 line-clamp-2">
+              {route.description}
+            </p>
           )}
         </div>
-        {route.description && (
-          <p className="mt-2 text-sm text-slate-600 line-clamp-2">{route.description}</p>
-        )}
-        <div className="mt-3 flex flex-wrap gap-3 text-sm text-slate-500">
-          {route.distance_km && <span>📏 {formatDistance(route.distance_km)}</span>}
-          {route.difficulty && <span>💪 {DIFFICULTY_LABELS[route.difficulty] || route.difficulty}</span>}
-          <span>👁 {route.view_count}</span>
-        </div>
-        {route.tags && route.tags.length > 0 && (
-          <div className="mt-3 flex flex-wrap gap-1">
-            {route.tags.map((tag) => (
-              <span key={tag} className="rounded bg-slate-100 px-2 py-0.5 text-xs text-slate-600">
-                {tag}
-              </span>
-            ))}
+
+        {/* Stats grid */}
+        <div className="grid grid-cols-3 gap-3 py-3 border-y border-border">
+          <div className="text-center">
+            <p className="text-h4 text-primary">
+              {route.distance_km != null ? route.distance_km : "—"}
+            </p>
+            <p className="text-body-sm text-text-secondary">км</p>
           </div>
-        )}
+          <div className="text-center">
+            <p className="text-h4 text-primary">{route.duration_days}</p>
+            <p className="text-body-sm text-text-secondary">дней</p>
+          </div>
+          <div className="text-center">
+            <p className="text-h4 text-primary">{placesCount || "—"}</p>
+            <p className="text-body-sm text-text-secondary">мест</p>
+          </div>
+        </div>
+
+        {/* Tags */}
+        <div className="flex flex-wrap gap-2 mt-auto">
+          {route.difficulty && (
+            <span className={difficultyColors[route.difficulty] || "badge-neutral"}>
+              {difficultyLabels[route.difficulty] || route.difficulty}
+            </span>
+          )}
+          {route.is_editorial && (
+            <span className="badge-primary">Выбор редакции</span>
+          )}
+          {route.is_free && (
+            <span className="badge-success">Бесплатно</span>
+          )}
+        </div>
       </div>
     </Link>
   );

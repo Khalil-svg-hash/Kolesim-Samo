@@ -3,21 +3,56 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --brand-primary: #2563eb;
-    --brand-primary-dark: #1d4ed8;
-    --brand-accent: #0ea5e9;
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    @apply bg-white text-text;
   }
 }
 
 @layer components {
-  .btn-primary {
-    @apply rounded-full bg-brand-primary px-6 py-3 text-white transition hover:bg-brand-primary-dark;
+  .container-grid {
+    @apply max-w-container mx-auto px-6 lg:px-8;
   }
-  .btn-outline {
-    @apply rounded-full border border-slate-200 px-6 py-3 text-slate-700 transition hover:bg-slate-50;
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 bg-primary text-white font-semibold rounded-lg
+           hover:bg-primary-dark transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 bg-white text-primary font-semibold rounded-lg border-2 border-primary
+           hover:bg-surface transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center px-4 py-2 text-text-secondary font-medium rounded-lg
+           hover:bg-surface transition-colors duration-200;
   }
   .card {
-    @apply rounded-2xl bg-white p-6 shadow-sm;
+    @apply bg-white rounded-xl border border-border shadow-sm hover:shadow-md transition-shadow duration-200;
+  }
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-body-sm font-medium;
+  }
+  .badge-primary {
+    @apply badge bg-primary/10 text-primary;
+  }
+  .badge-success {
+    @apply badge bg-emerald-50 text-emerald-700;
+  }
+  .badge-warning {
+    @apply badge bg-amber-50 text-amber-700;
+  }
+  .badge-neutral {
+    @apply badge bg-surface text-text-secondary;
+  }
+  .input-field {
+    @apply w-full px-4 py-3 bg-white border border-border rounded-lg text-body
+           placeholder:text-text-secondary/50
+           focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary
+           transition-colors duration-200;
+  }
+  .section-title {
+    @apply text-h2 text-text tracking-tight;
   }
 }

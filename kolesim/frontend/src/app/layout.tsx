@@ -1,23 +1,32 @@
 import type { Metadata } from "next";
-import { Manrope } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
-import Providers from "@/components/Providers";
-import Header from "@/components/Header";
+import { Providers } from "@/components/Providers";
+import { Header } from "@/components/Header";
 
-const manrope = Manrope({ subsets: ["latin", "cyrillic"], display: "swap" });
+const inter = Inter({
+  subsets: ["latin", "cyrillic"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
-  title: "Колесим самостоятельно",
-  description: "Каталог доступных мест и конструктор маршрутов для пользователей инвалидной коляски.",
+  title: "Колесим — Доступный путешественник",
+  description:
+    "Платформа для поиска доступных мест и маршрутов для людей с ограниченной подвижностью",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="ru" className={manrope.className}>
-      <body className="bg-slate-50 text-slate-900">
+    <html lang="ru" className={inter.variable}>
+      <body className="font-sans">
         <Providers>
           <Header />
-          {children}
+          <main>{children}</main>
         </Providers>
       </body>
     </html>
